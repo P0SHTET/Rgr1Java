@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ListView?>
+<VBox alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.controllers.TrackController">
+    <padding>
+        <Insets left="20.0" right="20.0"/>
+    </padding>
+
+    <VBox
+    >
+        <FlowPane
+                orientation="HORIZONTAL"
+                hgap="30"
+        >
+            <Label>Search</Label>
+            <TextField
+                    fx:id="searchString"
+            />
+            <Button
+                    text="New"
+                    onAction="#onHelloButtonClick"
+            />
+            <Button
+                    text="Save"
+                    onAction="#onSave"
+            />
+        </FlowPane>
+        <ListView
+                prefHeight="900"
+                fx:id="listView"
+        />
+    </VBox>
+</VBox>

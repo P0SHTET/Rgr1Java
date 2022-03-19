@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="com.example.controllers.TrackCell"
+         xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         >
+    <graphic>
+        <VBox
+                fx:id="viewBox"
+                spacing="8"
+        >
+            <FlowPane>
+                <children>
+                    <Label>Name:</Label>
+                    <Label fx:id="nameField"/>
+                </children>
+            </FlowPane>
+
+            <FlowPane
+            >
+                <children>
+                    <Label>Genre:</Label>
+                    <Label fx:id="genreField"/>
+                </children>
+            </FlowPane>
+
+            <FlowPane
+            >
+                <children>
+                    <Label>Author:</Label>
+                    <Label fx:id="authorField"/>
+                </children>
+            </FlowPane>
+
+            <FlowPane
+            >
+                <children>
+                    <Label>Album:</Label>
+                    <Label fx:id="albumField"/>
+                </children>
+            </FlowPane>
+        </VBox>
+    </graphic>
+</fx:root>
