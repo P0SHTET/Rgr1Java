@@ -8,8 +8,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.RowConstraints?>
 <VBox alignment="TOP_CENTER" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.controllers.TrackController">
+      fx:controller="com.example.controllers.LawController">
     <padding>
         <Insets left="20.0" right="20.0"/>
     </padding>
@@ -33,6 +37,53 @@
                     onAction="#onSave"
             />
         </FlowPane>
+
+        <GridPane
+                fx:id="createLaw"
+                visible="false"
+                vgap="10"
+        >
+            <padding>
+                <Insets left="20.0" right="20.0" top="20" bottom="20"/>
+            </padding>
+            <columnConstraints>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+            </columnConstraints>
+
+            <rowConstraints>
+                <RowConstraints/>
+                <RowConstraints/>
+            </rowConstraints>
+
+            <Label>Derivative</Label>
+            <TextField GridPane.columnIndex="1" fx:id="lawLaw"/>
+
+            <Label GridPane.columnIndex="3">Law</Label>
+            <TextField GridPane.columnIndex="4" GridPane.columnSpan="4" fx:id="lawDerivative"/>
+
+            <Label GridPane.rowIndex="1">StartDate</Label>
+            <DatePicker GridPane.rowIndex="1" GridPane.columnIndex="1" fx:id="lawStart"/>
+
+            <Label GridPane.columnIndex="2" GridPane.rowIndex="1">EndDate</Label>
+            <DatePicker GridPane.rowIndex="1" GridPane.columnIndex="3" fx:id="lawEnd"/>
+
+            <Label GridPane.columnIndex="4" GridPane.rowIndex="1">Side</Label>
+            <TextField GridPane.rowIndex="1" GridPane.columnIndex="5" fx:id="lawSide"/>
+
+            <Label GridPane.columnIndex="6" GridPane.rowIndex="1">Risk</Label>
+            <TextField GridPane.rowIndex="1" GridPane.columnIndex="7" fx:id="lawRisk"/>
+
+
+            <Button GridPane.rowIndex="3" onAction="#onSubmit">Submit</Button>
+        </GridPane>
+
         <ListView
                 prefHeight="900"
                 fx:id="listView"

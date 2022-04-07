@@ -5,8 +5,9 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.example.controllers.LawCell ?>
 
-<fx:root type="com.example.controllers.TrackCell"
+<fx:root type="LawCell"
          xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml"
          >
@@ -17,32 +18,48 @@
         >
             <FlowPane>
                 <children>
-                    <Label>Name:</Label>
-                    <Label fx:id="nameField"/>
+                    <Label>Derivative:</Label>
+                    <Label fx:id="derivativeField"/>
                 </children>
             </FlowPane>
 
             <FlowPane
             >
                 <children>
-                    <Label>Genre:</Label>
-                    <Label fx:id="genreField"/>
+                    <Label>Law:</Label>
+                    <Label fx:id="lawField"/>
                 </children>
             </FlowPane>
 
             <FlowPane
             >
                 <children>
-                    <Label>Author:</Label>
-                    <Label fx:id="authorField"/>
+                    <Label>Start:</Label>
+                    <Label fx:id="dateStartField"/>
                 </children>
             </FlowPane>
 
             <FlowPane
             >
                 <children>
-                    <Label>Album:</Label>
-                    <Label fx:id="albumField"/>
+                    <Label>End:</Label>
+                    <Label fx:id="dateEndField"/>
+                </children>
+            </FlowPane>
+
+            <FlowPane
+            >
+                <children>
+                    <Label>Side:</Label>
+                    <Label fx:id="sideField"/>
+                </children>
+            </FlowPane>
+
+            <FlowPane
+            >
+                <children>
+                    <Label>Risk:</Label>
+                    <Label fx:id="riskField"/>
                 </children>
             </FlowPane>
         </VBox>

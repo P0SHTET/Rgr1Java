@@ -1,16 +1,37 @@
 package com.example.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.type.CollectionType;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
+import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class JsonUtil {
 
-    private static final Gson gson = new Gson();
+    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectWriter writer = mapper.writer();
+
+    private static final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .create();;
+
+
 
     private static final String PATH_PREFIX = "src/main/resources";
 
@@ -27,16 +48,26 @@ public class JsonUtil {
         Files.writeString(Paths.get(absolutePath), value);
     }
 
-    public static <T> T parseJson(String resourcePath, Class<T> clazz) throws IOException {
-        return gson.fromJson(readFileString(resourcePath), clazz);
+    public static <T> ArrayList<T> parseCollectionJson(String resourcePath, Class<T> clazz) throws IOException {
+
+        CollectionType listType =
+                mapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz);
+
+        return mapper.readValue(new File(PATH_PREFIX+resourcePath),listType);
     }
 
     public static <T> void writeJson(String resourcePath, T object) throws IOException {
-        writeToFile(resourcePath, gson.toJson(object));
+        writeToFile(resourcePath, writer.writeValueAsString(object));
     }
 
-    public static <T> T parseJson(String resourcePath, TypeToken<T> typeToken) throws IOException {
-        return gson.fromJson(readFileString(resourcePath), typeToken.getType());
-    }
 
+
+}
+
+class LocalDateAdapter implements JsonSerializer<LocalDate> {
+
+    public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context) {
+        JsonPrimitive jsonPrimitive = new JsonPrimitive(date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        return jsonPrimitive; // "yyyy-mm-dd"
+    }
 }
